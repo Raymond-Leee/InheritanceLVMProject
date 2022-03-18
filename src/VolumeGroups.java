@@ -1,3 +1,9 @@
+import java.util.ArrayList;
+
 public class VolumeGroups {
-    private String name;
+    ArrayList<String> PVs;
+    ArrayList<String> LVs;
+    private int freeSpace;
+
+
 }

@@ -6,7 +6,11 @@ public class Volume {
 
     public Volume(String name) {
         this.name = name;
+        uuid = generateUUID();
+    }
+
+    public String generateUUID() {
         UUID u = UUID.randomUUID();
-        uuid = u.toString();
+        return u.toString();
     }
 }
