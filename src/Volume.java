@@ -13,4 +13,8 @@ public class Volume {
         UUID u = UUID.randomUUID();
         return u.toString();
     }
+
+    public String getUuid() {
+        return uuid;
+    }
 }
