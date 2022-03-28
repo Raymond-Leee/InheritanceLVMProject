@@ -12,5 +12,18 @@ public class VolumeGroups extends Volume {
         this.LVs = LVs;
     }
 
+    public int getSize()
+    {
+        return size;
+    }
 
+    public int getFreeSpace()
+    {
+        return freeSpace;
+    }
+
+    public String getInfo()
+    {
+        return getName() + ": total: [" + getSize() + "]" + "available: [" + getFreeSpace() + "] [" + getUuid() + "]";
+    }
 }

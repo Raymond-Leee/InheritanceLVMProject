@@ -14,7 +14,13 @@ public class Volume {
         return u.toString();
     }
 
-    public String getUuid() {
+    public String getName()
+    {
+        return name;
+    }
+
+    public String getUuid()
+    {
         return uuid;
     }
 }

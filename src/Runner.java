@@ -9,6 +9,59 @@ public class Runner {
         {
             System.out.print("cmd# ");
             String cmd = user.next();
+            if (cmd.equalsIgnoreCase("install-drive"))
+            {
+                System.out.print("Enter a name: ");
+                String name = user.next();
+                System.out.print("Enter size: ");
+                String size = user.next();
+            }
+            if (cmd.equalsIgnoreCase("list-drives"))
+            {
+
+            }
+            if (cmd.equalsIgnoreCase("pvcreate"))
+            {
+                System.out.print("Enter a name: ");
+                String pvname = user.next();
+                System.out.print("Enter an existing drive: ");
+                String drive = user.next();
+            }
+            if (cmd.equalsIgnoreCase("pvlist"))
+            {
+
+            }
+            if (cmd.equalsIgnoreCase("vgcreate"))
+            {
+                System.out.print("Enter a name: ");
+                String vgname = user.next();
+                System.out.print("Enter an existing physical volume: ");
+                String pv = user.next();
+            }
+            if (cmd.equalsIgnoreCase("vgextend"))
+            {
+                System.out.print("Enter a name: ");
+                String vgname = user.next();
+                System.out.print("Enter an existing physical volume: ");
+                String pv = user.next();
+            }
+            if (cmd.equalsIgnoreCase("vglist"))
+            {
+
+            }
+            if (cmd.equalsIgnoreCase("lvcreate"))
+            {
+                System.out.print("Enter a name: ");
+                String lvname = user.next();
+                System.out.print("Enter size: ");
+                String lvsize = user.next();
+                System.out.print("Enter an existing volume group: ");
+                String vg = user.next();
+            }
+            if (cmd.equalsIgnoreCase("lvlist"))
+            {
+
+            }
             if (cmd.equalsIgnoreCase("exit"))
             {
                 System.out.println("Saving data. Goodbye!");

@@ -7,15 +7,18 @@ public class PhysicalHardDrive {
         this.size = size;
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
-    public String getSize() {
+    public String getSize()
+    {
         return size;
     }
 
-    public void findInfo() {
+    public void getInfo()
+    {
         System.out.println(name + " [" + size + "]");
     }
 }
