@@ -17,8 +17,8 @@ public class PhysicalHardDrive {
         return size;
     }
 
-    public void getInfo()
+    public String toString()
     {
-        System.out.println(name + " [" + size + "]");
+        return name + " [" + size + "]";
     }
 }

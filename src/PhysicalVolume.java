@@ -23,7 +23,7 @@ public class PhysicalVolume extends Volume {
         return volumeGroup;
     }
 
-    public String getInfo()
+    public String toString()
     {
         return getName() + ": [" + getHardDrive().getSize() + "] [" + volumeGroup.getName() + "] [" + getUuid() + "]";
     }
