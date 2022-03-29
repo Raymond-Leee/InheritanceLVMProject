@@ -22,6 +22,11 @@ public class LogicalVolumes extends Volume {
         return size;
     }
 
+    public void setSize(String size)
+    {
+        this.size = size;
+    }
+
     public String toString()
     {
         return getName() + ": [" + size + "] [" + volumeGroup.getName() + "] [" + getUuid() + "]";
