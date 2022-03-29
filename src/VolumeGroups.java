@@ -15,9 +15,9 @@ public class VolumeGroups extends Volume {
     public int getSize()
     {
         size = 0;
-        for (int i = 0; i < PVs.size(); i++)
+        for (PhysicalVolume pv : PVs)
         {
-            size += Integer.valueOf(PVs.get(i).getHardDrive().getSize().substring(0, PVs.get(i).getHardDrive().getSize().indexOf("G")));
+            size += Integer.valueOf(pv.getHardDrive().getSize().substring(0, pv.getHardDrive().getSize().indexOf("G")));
         }
         return size;
     }
@@ -25,11 +25,12 @@ public class VolumeGroups extends Volume {
     public int getFreeSpace()
     {
         freeSpace = 0;
-        for (int i = 0; i < LVs.size(); i++)
+        for (LogicalVolumes lv : LVs)
         {
-            freeSpace += ;
+            freeSpace += Integer.valueOf(lv.getSize().substring(0, lv.getSize().indexOf("G")));
+            ;
         }
-        return freeSpace;
+        return getSize() - freeSpace;
     }
 
     public String toString()
