@@ -2,6 +2,7 @@ import java.util.Scanner;
 
 public class Runner {
     public static void main(String[] args) {
+        Volume runner = new Volume("Volume");
         Scanner user = new Scanner(System.in);
         boolean exit = false;
         System.out.println("Welcome to the LVM system! Enter your commands:");
@@ -15,6 +16,16 @@ public class Runner {
                 String name = user.next();
                 System.out.print("Enter size: ");
                 String size = user.next();
+                if (!runner.hardDriveExists(name))
+                {
+                    runner.installDrive(name, size);
+                    System.out.println();
+                }
+                else
+                {
+                    System.out.println("Drive " + name + " already exists");
+                    System.out.println();
+                }
             }
             if (cmd.equalsIgnoreCase("list-drives"))
             {

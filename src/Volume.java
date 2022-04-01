@@ -59,7 +59,7 @@ public class Volume {
         LVs.add(lv);
     }
 
-    public void installdrive(String name, String size)
+    public void installDrive(String name, String size)
     {
         PhysicalHardDrive phd = new PhysicalHardDrive(name, size);
         addPhysicalHardDrive(phd);
@@ -73,5 +73,17 @@ public class Volume {
             list += phd.toString() + "\n";
         }
         return list;
+    }
+
+    public boolean hardDriveExists(String fileName)
+    {
+        for (PhysicalHardDrive p : PHDs)
+        {
+            if (p.getName().equals(fileName))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }
