@@ -29,7 +29,7 @@ public class Runner {
             }
             if (cmd.equalsIgnoreCase("list-drives"))
             {
-
+                System.out.println(runner.listDrives());
             }
             if (cmd.equalsIgnoreCase("pvcreate"))
             {
