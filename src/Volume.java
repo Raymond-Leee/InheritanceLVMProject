@@ -80,7 +80,6 @@ public class Volume {
         System.out.println(name + " created");
     }
 
-
     public String listDrives()
     {
         String list = "";
@@ -133,7 +132,7 @@ public class Volume {
         return false;
     }
 
-    public boolean pvExists(String fileName)
+    public boolean physicalVolumeExists(String fileName)
     {
         for (PhysicalVolume pv : PVs)
         {
@@ -145,7 +144,7 @@ public class Volume {
         return false;
     }
 
-    public boolean vgExists(String fileName)
+    public boolean volumeGroupExists(String fileName)
     {
         for (VolumeGroups vg : VGs)
         {
@@ -157,7 +156,7 @@ public class Volume {
         return false;
     }
 
-    public boolean lvExists(String fileName)
+    public boolean logicalVolumeExists(String fileName)
     {
         for (LogicalVolumes lv : LVs)
         {
