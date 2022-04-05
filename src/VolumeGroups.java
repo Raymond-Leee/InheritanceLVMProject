@@ -6,10 +6,9 @@ public class VolumeGroups extends Volume {
     private int size;
     private int freeSpace;
 
-    public VolumeGroups(String name, ArrayList<PhysicalVolume> PVs, ArrayList<LogicalVolumes> LVs) {
+    public VolumeGroups(String name)
+    {
         super(name);
-        this.PVs = PVs;
-        this.LVs = LVs;
     }
 
     public int getSize()
@@ -28,7 +27,6 @@ public class VolumeGroups extends Volume {
         for (LogicalVolumes lv : LVs)
         {
             freeSpace += Integer.valueOf(lv.getSize().substring(0, lv.getSize().indexOf("G")));
-            ;
         }
         return getSize() - freeSpace;
     }

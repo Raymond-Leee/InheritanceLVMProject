@@ -66,20 +66,102 @@ public class Volume {
         System.out.println("Drive " + name + " installed");
     }
 
+    public void pvcreate(String name, String phdName)
+    {
+        PhysicalVolume pv = new PhysicalVolume(name, phdName);
+        addPhysicalVolume(pv);
+        System.out.println(name + " created");
+    }
+
+    public void vgcreate(String name)
+    {
+        VolumeGroups vg = new VolumeGroups(name);
+        addVolumeGroup(vg);
+        System.out.println(name + " created");
+    }
+
+
     public String listDrives()
     {
         String list = "";
-        for (PhysicalHardDrive phd : PHDs) {
+        for (PhysicalHardDrive phd : PHDs)
+        {
             list += phd.toString() + "\n";
+        }
+        return list;
+    }
+
+    public String pvlist()
+    {
+        String list = "";
+        for (PhysicalVolume pv : PVs)
+        {
+            list += pv.toString() + "\n";
+        }
+        return list;
+    }
+
+    public String vglist()
+    {
+        String list = "";
+        for (VolumeGroups vg : VGs)
+        {
+            list += vg.toString() + "\n";
+        }
+        return list;
+    }
+
+    public String lvlist()
+    {
+        String list = "";
+        for (LogicalVolumes lv : LVs)
+        {
+            list += lv.toString() + "\n";
         }
         return list;
     }
 
     public boolean hardDriveExists(String fileName)
     {
-        for (PhysicalHardDrive p : PHDs)
+        for (PhysicalHardDrive phd : PHDs)
         {
-            if (p.getName().equals(fileName))
+            if (phd.getName().equals(fileName))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean pvExists(String fileName)
+    {
+        for (PhysicalVolume pv : PVs)
+        {
+            if (pv.getName().equals(fileName))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean vgExists(String fileName)
+    {
+        for (VolumeGroups vg : VGs)
+        {
+            if (vg.getName().equals(fileName))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean lvExists(String fileName)
+    {
+        for (LogicalVolumes lv : LVs)
+        {
+            if (lv.getName().equals(fileName))
             {
                 return true;
             }

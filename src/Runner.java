@@ -37,17 +37,19 @@ public class Runner {
                 String pvname = user.next();
                 System.out.print("Enter an existing drive: ");
                 String drive = user.next();
+                runner.pvcreate(pvname, drive);
+                System.out.println();
             }
             if (cmd.equalsIgnoreCase("pvlist"))
             {
-
+                System.out.println(runner.pvlist());
             }
             if (cmd.equalsIgnoreCase("vgcreate"))
             {
                 System.out.print("Enter a name: ");
                 String vgname = user.next();
-                System.out.print("Enter an existing physical volume: ");
-                String pv = user.next();
+                runner.vgcreate(vgname);
+                System.out.println();
             }
             if (cmd.equalsIgnoreCase("vgextend"))
             {
@@ -58,20 +60,15 @@ public class Runner {
             }
             if (cmd.equalsIgnoreCase("vglist"))
             {
-
+                System.out.println(runner.vglist());
             }
             if (cmd.equalsIgnoreCase("lvcreate"))
             {
-                System.out.print("Enter a name: ");
-                String lvname = user.next();
-                System.out.print("Enter size: ");
-                String lvsize = user.next();
-                System.out.print("Enter an existing volume group: ");
-                String vg = user.next();
+
             }
             if (cmd.equalsIgnoreCase("lvlist"))
             {
-
+                System.out.println(runner.lvlist());
             }
             if (cmd.equalsIgnoreCase("exit"))
             {
