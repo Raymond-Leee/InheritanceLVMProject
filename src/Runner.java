@@ -81,7 +81,7 @@ public class Runner {
                 String physicalVol = user.next();
                 if (!runner.volumeGroupExists(vgname) && !runner.physicalVolumeNotExists(physicalVol))
                 {
-                        runner.pvcreate(vgname, physicalVol);
+                        runner.vgcreate(vgname, physicalVol);
                         System.out.println();
                 }
                 else

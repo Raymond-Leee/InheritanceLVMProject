@@ -229,40 +229,4 @@ public class Volume {
         }
         return false;
     }
-
-    public boolean volumeGroupNotExists(String volumeGroup)
-    {
-        for (VolumeGroups vg : VGs)
-        {
-            if (vg.getName().equals(volumeGroup))
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public boolean logicalVolumeExists(String logicalVol)
-    {
-        for (LogicalVolumes lv : LVs)
-        {
-            if (lv.getName().equals(logicalVol))
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean logicalVolumeNotExists(String logicalVol)
-    {
-        for (LogicalVolumes lv : LVs)
-        {
-            if (lv.getName().equals(logicalVol))
-            {
-                return false;
-            }
-        }
-        return true;
-    }
 }
