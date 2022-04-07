@@ -39,6 +39,42 @@ public class Volume {
         this.uuid = uuid;
     }
 
+    public PhysicalHardDrive getPhysicalHardDrive(String physicalHardDriveName)
+    {
+        for (PhysicalHardDrive phd : PHDs)
+        {
+            if (phd.getName().equals(physicalHardDriveName))
+            {
+                return phd;
+            }
+        }
+        return null;
+    }
+
+    public VolumeGroups getVolumeGroup(String volumeGroupName)
+    {
+        for (VolumeGroups vg : VGs)
+        {
+            if (vg.getName().equals(volumeGroupName))
+            {
+                return vg;
+            }
+        }
+        return null;
+    }
+
+    public PhysicalVolume getPhysicalVolume(String physicalVolumeName)
+    {
+        for (PhysicalVolume pv : PVs)
+        {
+            if (pv.getName().equals(physicalVolumeName))
+            {
+                return pv;
+            }
+        }
+        return null;
+    }
+
     public void addPhysicalHardDrive(PhysicalHardDrive phd)
     {
         PHDs.add(phd);
@@ -66,17 +102,19 @@ public class Volume {
         System.out.println("Drive " + name + " installed");
     }
 
-    public void pvcreate(String name, String phdName)
+    public void pvcreate(String name, String physicalHardDriveName)
     {
-        PhysicalVolume pv = new PhysicalVolume(name, phdName);
+        PhysicalVolume pv = new PhysicalVolume(name, physicalHardDriveName);
         addPhysicalVolume(pv);
+        getPhysicalHardDrive(physicalHardDriveName).setPhysicalVolume(pv);
         System.out.println(name + " created");
     }
 
-    public void vgcreate(String name)
+    public void vgcreate(String name, String physicalVolumeName)
     {
         VolumeGroups vg = new VolumeGroups(name);
         addVolumeGroup(vg);
+        getPhysicalVolume(physicalVolumeName).setVolumeGroup(vg);
         System.out.println(name + " created");
     }
 
@@ -120,11 +158,11 @@ public class Volume {
         return list;
     }
 
-    public boolean hardDriveExists(String fileName)
+    public boolean hardDriveExists(String drive)
     {
         for (PhysicalHardDrive phd : PHDs)
         {
-            if (phd.getName().equals(fileName))
+            if (phd.getName().equals(drive))
             {
                 return true;
             }
@@ -132,11 +170,23 @@ public class Volume {
         return false;
     }
 
-    public boolean physicalVolumeExists(String fileName)
+    public boolean hardDriveNotExists(String drive)
+    {
+        for (PhysicalHardDrive phd : PHDs)
+        {
+            if (phd.getName().equals(drive))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean hardDriveUsed(String drive)
     {
         for (PhysicalVolume pv : PVs)
         {
-            if (pv.getName().equals(fileName))
+            if (pv.getHardDrive().getName().equals(drive))
             {
                 return true;
             }
@@ -144,11 +194,35 @@ public class Volume {
         return false;
     }
 
-    public boolean volumeGroupExists(String fileName)
+    public boolean physicalVolumeExists(String physicalVol)
+    {
+        for (PhysicalVolume pv : PVs)
+        {
+            if (pv.getName().equals(physicalVol))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean physicalVolumeNotExists(String physicalVol)
+    {
+        for (PhysicalVolume pv : PVs)
+        {
+            if (pv.getName().equals(physicalVol))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean volumeGroupExists(String volumeGroup)
     {
         for (VolumeGroups vg : VGs)
         {
-            if (vg.getName().equals(fileName))
+            if (vg.getName().equals(volumeGroup))
             {
                 return true;
             }
@@ -156,15 +230,39 @@ public class Volume {
         return false;
     }
 
-    public boolean logicalVolumeExists(String fileName)
+    public boolean volumeGroupNotExists(String volumeGroup)
+    {
+        for (VolumeGroups vg : VGs)
+        {
+            if (vg.getName().equals(volumeGroup))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean logicalVolumeExists(String logicalVol)
     {
         for (LogicalVolumes lv : LVs)
         {
-            if (lv.getName().equals(fileName))
+            if (lv.getName().equals(logicalVol))
             {
                 return true;
             }
         }
         return false;
+    }
+
+    public boolean logicalVolumeNotExists(String logicalVol)
+    {
+        for (LogicalVolumes lv : LVs)
+        {
+            if (lv.getName().equals(logicalVol))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }

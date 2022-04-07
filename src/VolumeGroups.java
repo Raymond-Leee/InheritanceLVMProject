@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class VolumeGroups extends Volume {
-    ArrayList<PhysicalVolume> PVs;
-    ArrayList<LogicalVolumes> LVs;
+    ArrayList<PhysicalVolume> PVs = new ArrayList<PhysicalVolume>();
+    ArrayList<LogicalVolumes> LVs = new ArrayList<LogicalVolumes>();
     private int size;
     private int freeSpace;
 
@@ -33,6 +33,7 @@ public class VolumeGroups extends Volume {
 
     public String toString()
     {
-        return getName() + ": total: [" + getSize() + "]" + "available: [" + getFreeSpace() + "] [" + getUuid() + "]";
+        String str = getName() + ": total: [" + getSize() + "]" + " available: [" + getFreeSpace() + "] [" + getUuid() + "]";
+        return str;
     }
 }

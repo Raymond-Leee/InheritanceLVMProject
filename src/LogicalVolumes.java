@@ -5,12 +5,7 @@ public class LogicalVolumes extends Volume {
     public LogicalVolumes (String name, String size, String volumeGroupName) {
         super(name);
         this.size = size;
-        this.volumeGroup = volumeGroup;
-    }
-
-    public void setVolumeGroup(VolumeGroups volumeGroup)
-    {
-        this.volumeGroup = volumeGroup;
+        this.volumeGroup = getVolumeGroup(volumeGroupName);
     }
 
     public void setSize(String size)
@@ -30,6 +25,7 @@ public class LogicalVolumes extends Volume {
 
     public String toString()
     {
-        return getName() + ": [" + size + "] [" + volumeGroup.getName() + "] [" + getUuid() + "]";
+        String str = getName() + ": [" + size + "] [" + volumeGroup.getName() + "] [" + getUuid() + "]";
+        return str;
     }
 }

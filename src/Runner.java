@@ -23,57 +23,114 @@ public class Runner {
                 }
                 else
                 {
-                    System.out.println("Drive " + name + " already exists");
+                    System.out.println("Hard drive " + name + " already exists");
                     System.out.println();
                 }
             }
-            if (cmd.equalsIgnoreCase("list-drives"))
+            else if (cmd.equalsIgnoreCase("list-drives"))
             {
                 System.out.println(runner.listDrives());
             }
-            if (cmd.equalsIgnoreCase("pvcreate"))
+            else if (cmd.equalsIgnoreCase("pvcreate"))
             {
                 System.out.print("Enter a name: ");
                 String pvname = user.next();
                 System.out.print("Enter an existing drive: ");
                 String drive = user.next();
-                runner.pvcreate(pvname, drive);
-                System.out.println();
+                if (!runner.physicalVolumeExists(pvname) && !runner.hardDriveNotExists(drive))
+                {
+                    if (!runner.hardDriveUsed(drive))
+                    {
+                        runner.pvcreate(pvname, drive);
+                        System.out.println();
+                    }
+                    else
+                    {
+                        System.out.println("Hard drive " + drive + " is associated in another physical volume");
+                        System.out.println();
+                    }
+                }
+                else
+                {
+                    if (runner.physicalVolumeExists(pvname))
+                    {
+                        System.out.println("Physical volume " + pvname + " already exists");
+                        System.out.println();
+                    }
+                    else if (runner.hardDriveNotExists(drive))
+                    {
+                        System.out.println("Hard drive does not exist");
+                        System.out.println();
+                    }
+                    else
+                    {
+                        System.out.println("Please enter a valid name and drive");
+                        System.out.println();
+                    }
+                }
             }
-            if (cmd.equalsIgnoreCase("pvlist"))
+            else if (cmd.equalsIgnoreCase("pvlist"))
             {
                 System.out.println(runner.pvlist());
             }
-            if (cmd.equalsIgnoreCase("vgcreate"))
+            else if (cmd.equalsIgnoreCase("vgcreate"))
             {
                 System.out.print("Enter a name: ");
                 String vgname = user.next();
-                runner.vgcreate(vgname);
-                System.out.println();
+                System.out.print("Enter a existing physical volume: ");
+                String physicalVol = user.next();
+                if (!runner.volumeGroupExists(vgname) && !runner.physicalVolumeNotExists(physicalVol))
+                {
+                        runner.pvcreate(vgname, physicalVol);
+                        System.out.println();
+                }
+                else
+                {
+                    if (runner.volumeGroupExists(vgname))
+                    {
+                        System.out.println("Volume group " + vgname + " already exists");
+                        System.out.println();
+                    }
+                    else if (runner.physicalVolumeNotExists(physicalVol))
+                    {
+                        System.out.println("Physical volume does not exist");
+                        System.out.println();
+                    }
+                    else
+                    {
+                        System.out.println("Please enter a valid name and physical volume");
+                        System.out.println();
+                    }
+                }
             }
-            if (cmd.equalsIgnoreCase("vgextend"))
+            else if (cmd.equalsIgnoreCase("vgextend"))
             {
-                System.out.print("Enter a name: ");
+                System.out.print("Enter the volume group you want to extend: ");
                 String vgname = user.next();
-                System.out.print("Enter an existing physical volume: ");
+                System.out.print("Enter another existing physical volume: ");
                 String pv = user.next();
             }
-            if (cmd.equalsIgnoreCase("vglist"))
+            else if (cmd.equalsIgnoreCase("vglist"))
             {
                 System.out.println(runner.vglist());
             }
-            if (cmd.equalsIgnoreCase("lvcreate"))
+            else if (cmd.equalsIgnoreCase("lvcreate"))
             {
 
             }
-            if (cmd.equalsIgnoreCase("lvlist"))
+            else if (cmd.equalsIgnoreCase("lvlist"))
             {
                 System.out.println(runner.lvlist());
             }
-            if (cmd.equalsIgnoreCase("exit"))
+            else if (cmd.equalsIgnoreCase("exit"))
             {
                 System.out.println("Saving data. Goodbye!");
                 exit = true;
+            }
+            else
+            {
+                System.out.println("Please enter a valid command.");
+                System.out.println();
             }
         }
     }

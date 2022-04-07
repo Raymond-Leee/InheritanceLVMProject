@@ -5,7 +5,16 @@ public class PhysicalVolume extends Volume {
     public PhysicalVolume(String name, String physicalHardDriveName)
     {
         super(name);
-        this.hardDrive = hardDrive;
+        hardDrive = getPhysicalHardDrive(physicalHardDriveName);
+    }
+
+    public void setVolumeGroup(VolumeGroups volumeGroup)
+    {
+        this.volumeGroup = volumeGroup;
+    }
+
+    public VolumeGroups getVolumeGroup() {
+        return volumeGroup;
     }
 
     public PhysicalHardDrive getHardDrive()
@@ -15,6 +24,12 @@ public class PhysicalVolume extends Volume {
 
     public String toString()
     {
-        return getName() + ": [" + getHardDrive().getSize() + "] [" + volumeGroup.getName() + "] [" + getUuid() + "]";
+        String str = getName() + ": [" + getHardDrive().getSize() + "] ";
+        if (volumeGroup != null)
+        {
+            str += "[" + getVolumeGroup().getName() + "] ";
+        }
+        str += "[" + getUuid() + "]";
+        return str;
     }
 }
