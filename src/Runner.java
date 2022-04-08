@@ -37,7 +37,7 @@ public class Runner {
                 String pvname = user.next();
                 System.out.print("Enter an existing drive: ");
                 String drive = user.next();
-                if (!runner.physicalVolumeExists(pvname) && !runner.hardDriveNotExists(drive))
+                if (!runner.physicalVolumeExists(pvname) && runner.hardDriveExists(drive))
                 {
                     if (!runner.hardDriveUsed(drive))
                     {
@@ -57,7 +57,7 @@ public class Runner {
                         System.out.println("Physical volume " + pvname + " already exists");
                         System.out.println();
                     }
-                    else if (runner.hardDriveNotExists(drive))
+                    else if (!runner.hardDriveExists(drive))
                     {
                         System.out.println("Hard drive does not exist");
                         System.out.println();
@@ -79,7 +79,7 @@ public class Runner {
                 String vgname = user.next();
                 System.out.print("Enter a existing physical volume: ");
                 String physicalVol = user.next();
-                if (!runner.volumeGroupExists(vgname) && !runner.physicalVolumeNotExists(physicalVol))
+                if (!runner.volumeGroupExists(vgname) && runner.physicalVolumeExists(physicalVol))
                 {
                     if (!runner.physicalVolumeUsed(physicalVol))
                     {
@@ -100,7 +100,7 @@ public class Runner {
                         System.out.println("Volume group " + vgname + " already exists");
                         System.out.println();
                     }
-                    else if (runner.physicalVolumeNotExists(physicalVol))
+                    else if (!runner.physicalVolumeExists(physicalVol))
                     {
                         System.out.println("Physical volume does not exist");
                         System.out.println();
@@ -118,7 +118,7 @@ public class Runner {
                 String vgname = user.next();
                 System.out.print("Enter another existing physical volume: ");
                 String physicalVol = user.next();
-                if (runner.volumeGroupExists(vgname) && !runner.physicalVolumeNotExists(physicalVol))
+                if (runner.volumeGroupExists(vgname) && runner.physicalVolumeExists(physicalVol))
                 {
                     if (!runner.physicalVolumeUsed(physicalVol))
                     {
@@ -133,12 +133,12 @@ public class Runner {
                 }
                 else
                 {
-                    if (runner.volumeGroupNotExists(vgname))
+                    if (!runner.volumeGroupExists(vgname))
                     {
                         System.out.println("Volume group does not exist");
                         System.out.println();
                     }
-                    else if (runner.physicalVolumeNotExists(physicalVol))
+                    else if (!runner.physicalVolumeExists(physicalVol))
                     {
                         System.out.println("Physical volume does not exist");
                         System.out.println();

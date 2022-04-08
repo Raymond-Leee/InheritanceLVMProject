@@ -177,18 +177,6 @@ public class Volume {
         return false;
     }
 
-    public boolean hardDriveNotExists(String drive)
-    {
-        for (PhysicalHardDrive phd : PHDs)
-        {
-            if (phd.getName().equals(drive))
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
     public boolean hardDriveUsed(String drive)
     {
         for (PhysicalVolume pv : PVs)
@@ -213,18 +201,6 @@ public class Volume {
         return false;
     }
 
-    public boolean physicalVolumeNotExists(String physicalVol)
-    {
-        for (PhysicalVolume pv : PVs)
-        {
-            if (pv.getName().equals(physicalVol))
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
     public boolean physicalVolumeUsed(String physicalVol)
     {
         if (getPhysicalVolume(physicalVol).getVolumeGroup() == null)
@@ -244,17 +220,5 @@ public class Volume {
             }
         }
         return false;
-    }
-
-    public boolean volumeGroupNotExists(String volumeGroup)
-    {
-        for (VolumeGroups vg : VGs)
-        {
-            if (vg.getName().equals(volumeGroup))
-            {
-                return false;
-            }
-        }
-        return true;
     }
 }
