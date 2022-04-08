@@ -8,11 +8,6 @@ public class LogicalVolumes extends Volume {
         this.volumeGroup = getVolumeGroup(volumeGroupName);
     }
 
-    public void setSize(String size)
-    {
-        this.size = size;
-    }
-
     public VolumeGroups getVolumeGroup()
     {
         return volumeGroup;
