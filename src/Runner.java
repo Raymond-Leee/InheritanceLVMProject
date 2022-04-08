@@ -160,7 +160,7 @@ public class Runner {
             }
             else if (cmd.equalsIgnoreCase("lvlist"))
             {
-                System.out.println(runner.lvlist());
+
             }
             else if (cmd.equalsIgnoreCase("exit"))
             {
