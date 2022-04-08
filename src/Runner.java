@@ -46,7 +46,7 @@ public class Runner {
                     }
                     else
                     {
-                        System.out.println("Hard drive " + drive + " is associated in another physical volume");
+                        System.out.println("Hard drive " + drive + " is associated with another physical volume");
                         System.out.println();
                     }
                 }
@@ -81,8 +81,17 @@ public class Runner {
                 String physicalVol = user.next();
                 if (!runner.volumeGroupExists(vgname) && !runner.physicalVolumeNotExists(physicalVol))
                 {
+                    if (!runner.physicalVolumeUsed(physicalVol))
+                    {
                         runner.vgcreate(vgname, physicalVol);
+                        runner.addPhysicalVolume(runner.getPhysicalVolume(physicalVol));
                         System.out.println();
+                    }
+                    else
+                    {
+                        System.out.println("Physical volume " + physicalVol + " is associated with another volume group");
+                        System.out.println();
+                    }
                 }
                 else
                 {
@@ -108,7 +117,38 @@ public class Runner {
                 System.out.print("Enter the volume group you want to extend: ");
                 String vgname = user.next();
                 System.out.print("Enter another existing physical volume: ");
-                String pv = user.next();
+                String physicalVol = user.next();
+                if (runner.volumeGroupExists(vgname) && !runner.physicalVolumeNotExists(physicalVol))
+                {
+                    if (!runner.physicalVolumeUsed(physicalVol))
+                    {
+                        runner.vgextend(vgname, physicalVol);
+                        System.out.println();
+                    }
+                    else
+                    {
+                        System.out.println("Physical volume " + physicalVol + " is associated with another volume group");
+                        System.out.println();
+                    }
+                }
+                else
+                {
+                    if (runner.volumeGroupNotExists(vgname))
+                    {
+                        System.out.println("Volume group does not exist");
+                        System.out.println();
+                    }
+                    else if (runner.physicalVolumeNotExists(physicalVol))
+                    {
+                        System.out.println("Physical volume does not exist");
+                        System.out.println();
+                    }
+                    else
+                    {
+                        System.out.println("Please enter a valid name and physical volume");
+                        System.out.println();
+                    }
+                }
             }
             else if (cmd.equalsIgnoreCase("vglist"))
             {

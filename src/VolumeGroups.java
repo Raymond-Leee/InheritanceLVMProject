@@ -1,20 +1,27 @@
 import java.util.ArrayList;
 
 public class VolumeGroups extends Volume {
-    ArrayList<PhysicalVolume> PVs = new ArrayList<PhysicalVolume>();
-    ArrayList<LogicalVolumes> LVs = new ArrayList<LogicalVolumes>();
+    ArrayList<PhysicalVolume> physicalVolumes;
+    ArrayList<LogicalVolumes> logicalVolumes;
     private int size;
     private int freeSpace;
 
     public VolumeGroups(String name)
     {
         super(name);
+        physicalVolumes = getPVs();
+        logicalVolumes = getLVs();
+    }
+
+    public void addPVtoVG(PhysicalVolume PV)
+    {
+        physicalVolumes.add(PV);
     }
 
     public int getSize()
     {
         size = 0;
-        for (PhysicalVolume pv : PVs)
+        for (PhysicalVolume pv : physicalVolumes)
         {
             size += Integer.valueOf(pv.getHardDrive().getSize().substring(0, pv.getHardDrive().getSize().indexOf("G")));
         }
@@ -24,7 +31,7 @@ public class VolumeGroups extends Volume {
     public int getFreeSpace()
     {
         freeSpace = 0;
-        for (LogicalVolumes lv : LVs)
+        for (LogicalVolumes lv : logicalVolumes)
         {
             freeSpace += Integer.valueOf(lv.getSize().substring(0, lv.getSize().indexOf("G")));
         }
@@ -33,7 +40,16 @@ public class VolumeGroups extends Volume {
 
     public String toString()
     {
-        String str = getName() + ": total: [" + getSize() + "]" + " available: [" + getFreeSpace() + "] [" + getUuid() + "]";
+        String str = getName() + ": total: [" + getSize() + "]" + " available: [" + getFreeSpace() + "] [";
+        if (physicalVolumes.size() > 0)
+        {
+            for (int i = 0; i < physicalVolumes.size() - 1; i++)
+            {
+                str += physicalVolumes.get(i).getName() + ", ";
+            }
+            str += physicalVolumes.get(physicalVolumes.size() - 1).getName();
+        }
+        str += "] [" + getUuid() + "]";
         return str;
     }
 }

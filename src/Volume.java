@@ -29,14 +29,14 @@ public class Volume {
         return uuid;
     }
 
-    public void setName(String name)
+    public static ArrayList<PhysicalVolume> getPVs()
     {
-        this.name = name;
+        return PVs;
     }
 
-    public void setUuid(String uuid)
+    public static ArrayList<LogicalVolumes> getLVs()
     {
-        this.uuid = uuid;
+        return LVs;
     }
 
     public PhysicalHardDrive getPhysicalHardDrive(String physicalHardDriveName)
@@ -107,7 +107,7 @@ public class Volume {
         PhysicalVolume pv = new PhysicalVolume(name, physicalHardDriveName);
         addPhysicalVolume(pv);
         getPhysicalHardDrive(physicalHardDriveName).setPhysicalVolume(pv);
-        System.out.println(name + " created");
+        System.out.println("Physical volume " + name + " created");
     }
 
     public void vgcreate(String name, String physicalVolumeName)
@@ -115,7 +115,14 @@ public class Volume {
         VolumeGroups vg = new VolumeGroups(name);
         addVolumeGroup(vg);
         getPhysicalVolume(physicalVolumeName).setVolumeGroup(vg);
-        System.out.println(name + " created");
+        System.out.println("Volume group " + name + " created");
+    }
+
+    public void vgextend(String name, String physicalVolumeName)
+    {
+        getVolumeGroup(name).addPVtoVG(getPhysicalVolume(physicalVolumeName));
+        getPhysicalVolume(physicalVolumeName).setVolumeGroup(getVolumeGroup(name));
+        System.out.println("Physical volume " + physicalVolumeName + " added to volume group " + name);
     }
 
     public String listDrives()
@@ -218,6 +225,15 @@ public class Volume {
         return true;
     }
 
+    public boolean physicalVolumeUsed(String physicalVol)
+    {
+        if (getPhysicalVolume(physicalVol).getVolumeGroup() == null)
+        {
+            return false;
+        }
+        return true;
+    }
+
     public boolean volumeGroupExists(String volumeGroup)
     {
         for (VolumeGroups vg : VGs)
@@ -228,5 +244,17 @@ public class Volume {
             }
         }
         return false;
+    }
+
+    public boolean volumeGroupNotExists(String volumeGroup)
+    {
+        for (VolumeGroups vg : VGs)
+        {
+            if (vg.getName().equals(volumeGroup))
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
