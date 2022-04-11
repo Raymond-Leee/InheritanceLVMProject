@@ -1,5 +1,6 @@
 # InheritanceLVMProject
 Volume Class
+
 Variables
   - String name > Stores the general name for Physical Volume, Volume Group and Logical Volume
   - String uuid > Stores the general uuid for Physical Volume, Volume Group and Logical Volume
@@ -40,6 +41,7 @@ Variables
   
 
 PhysicalHardDrive Class
+
 Variables
   - String name > Stores the name for each created physical hard drive
   - String size > Stores the size for each created physical hard drive in gigabytes
@@ -57,6 +59,7 @@ Constructor
   
   
 PhysicalVolume Class
+
 Variables
   - PhysicalHardDrive hardDrive > Stores the hardDrive that the physical volume is associated with (If applicable)
   - VolumeGroups volumeGroup > Stores the volumeGroup that the physical volume is associated with (If applicable)
@@ -72,6 +75,7 @@ Constructor
 
 
 VolumeGroup Class
+
 Variables
   - ArrayList physicalVolumes > A list containing all physicalVolumes in the volume group
   - ArrayList logicalVolumes > A list containing all logicalVolumes in the volume group
@@ -90,6 +94,7 @@ Variables
   
  
  LogicalVolume Class
+ 
  Variables
   - String size > Stores the size of the logical volume
   - VolumeGroups volumeGroup > Stores the volumeGroup the logical volume is associated with
