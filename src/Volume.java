@@ -65,8 +65,6 @@ public class Volume {
         return null;
     }
 
-
-
     public void addPhysicalHardDrive(PhysicalHardDrive phd)
     {
         PHDs.add(phd);
@@ -120,13 +118,12 @@ public class Volume {
 
     public void lvcreate(String name, String size, String volumeGroupName)
     {
-        VolumeGroups vg = getVolumeGroup(volumeGroupName);
         int lvSize = Integer.valueOf(size.substring(0, size.indexOf("G")));
-        if (lvSize < vg.getFreeSpace())
+        if (lvSize < getVolumeGroup(volumeGroupName).getFreeSpace())
         {
             LogicalVolumes lv = new LogicalVolumes(name, size, volumeGroupName);
             addLogicalVolume(lv);
-            vg.addLVtoVG(lv);
+            getVolumeGroup(volumeGroupName).addLVtoVG(lv);
             System.out.println("Logical volume " + name + " created");
         }
         else
