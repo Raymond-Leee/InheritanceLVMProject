@@ -58,7 +58,7 @@ Constructor
   - String toString > Returns the name and size of the hard drive
   
   
-PhysicalVolume Class
+PhysicalVolume Class extends Volume Class
 
 Variables
   - PhysicalHardDrive hardDrive > Stores the hardDrive that the physical volume is associated with (If applicable)
@@ -74,7 +74,7 @@ Constructor
   - String toString > Returns the name, size, and UUID of the physical volume
 
 
-VolumeGroup Class
+VolumeGroup Class extends Volume Class
 
 Variables
   - ArrayList physicalVolumes > A list containing all physicalVolumes in the volume group
@@ -93,7 +93,7 @@ Variables
   - String toString > Returns the name, total size, remaining space, associated physical volume(s), and UUID of the volume group
   
  
- LogicalVolume Class
+ LogicalVolume Class extends Volume Class
  
  Variables
   - String size > Stores the size of the logical volume
