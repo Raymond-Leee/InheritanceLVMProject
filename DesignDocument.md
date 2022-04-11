@@ -33,3 +33,8 @@ Constructor
   VolumeGroup getVolumeGroup > Returns volumeGroup
   PhysicalHardDrive getHardDrive > Returns hardDrive
   String toString > Returns getName() + ": [" + getHardDrive().getSize() + "] " + "[" + getUuid() + "]"
+
+VolumeGroup Class
+Variables
+  ArrayList physicalVolumes > A list containing all physicalVolumes in the volume group
+  ArrayList logicalVolumes
