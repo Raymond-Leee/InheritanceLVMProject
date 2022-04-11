@@ -75,6 +75,8 @@ public class Volume {
         return null;
     }
 
+
+
     public void addPhysicalHardDrive(PhysicalHardDrive phd)
     {
         PHDs.add(phd);
@@ -123,6 +125,23 @@ public class Volume {
         getVolumeGroup(name).addPVtoVG(getPhysicalVolume(physicalVolumeName));
         getPhysicalVolume(physicalVolumeName).setVolumeGroup(getVolumeGroup(name));
         System.out.println("Physical volume " + physicalVolumeName + " added to volume group " + name);
+    }
+
+    public void lvcreate(String name, String size, String volumeGroupName)
+    {
+        VolumeGroups vg = getVolumeGroup(volumeGroupName);
+        int lvSize = Integer.valueOf(size.substring(0, size.indexOf("G")));
+        if (lvSize < vg.getFreeSpace())
+        {
+            LogicalVolumes lv = new LogicalVolumes(name, size, volumeGroupName);
+            addLogicalVolume(lv);
+            vg.addLVtoVG(lv);
+            System.out.println("Logical volume " + name + " created");
+        }
+        else
+        {
+            System.out.println("Not enough space in volume group " + volumeGroupName);
+        }
     }
 
     public String listDrives()
@@ -215,6 +234,18 @@ public class Volume {
         for (VolumeGroups vg : VGs)
         {
             if (vg.getName().equals(volumeGroup))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean logicalVolumeExists(String logicalVol)
+    {
+        for (LogicalVolumes lv : LVs)
+        {
+            if (lv.getName().equals(logicalVol))
             {
                 return true;
             }

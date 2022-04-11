@@ -156,11 +156,40 @@ public class Runner {
             }
             else if (cmd.equalsIgnoreCase("lvcreate"))
             {
-
+                System.out.print("Enter a name: ");
+                String lvname = user.next();
+                System.out.print("Enter a size: ");
+                String size = user.next();
+                System.out.print("Enter a existing volume group: ");
+                String volumeGroup = user.next();
+                if (!runner.logicalVolumeExists(lvname) && runner.volumeGroupExists(volumeGroup))
+                {
+                    runner.lvcreate(lvname, size, volumeGroup);
+                    runner.addVolumeGroup(runner.getVolumeGroup(volumeGroup));
+                    System.out.println();
+                }
+                else
+                {
+                    if (runner.logicalVolumeExists(lvname))
+                    {
+                        System.out.println("Logical volume " + lvname + " already exists");
+                        System.out.println();
+                    }
+                    if (!runner.volumeGroupExists(volumeGroup))
+                    {
+                        System.out.println("Volume group does not exist");
+                        System.out.println();
+                    }
+                    else
+                    {
+                        System.out.println("Please enter a valid name and physical volume");
+                        System.out.println();
+                    }
+                }
             }
             else if (cmd.equalsIgnoreCase("lvlist"))
             {
-
+                System.out.println(runner.lvlist());
             }
             else if (cmd.equalsIgnoreCase("exit"))
             {

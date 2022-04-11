@@ -1,21 +1,24 @@
 import java.util.ArrayList;
 
 public class VolumeGroups extends Volume {
-    ArrayList<PhysicalVolume> physicalVolumes;
-    ArrayList<LogicalVolumes> logicalVolumes;
+    ArrayList<PhysicalVolume> physicalVolumes = new ArrayList<PhysicalVolume>();
+    ArrayList<LogicalVolumes> logicalVolumes = new ArrayList<LogicalVolumes>();
     private int size;
     private int freeSpace;
 
     public VolumeGroups(String name)
     {
         super(name);
-        physicalVolumes = getPVs();
-        logicalVolumes = getLVs();
     }
 
     public void addPVtoVG(PhysicalVolume PV)
     {
         physicalVolumes.add(PV);
+    }
+
+    public void addLVtoVG(LogicalVolumes LV)
+    {
+        logicalVolumes.add(LV);
     }
 
     public int getSize()
