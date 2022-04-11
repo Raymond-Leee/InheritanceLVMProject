@@ -29,16 +29,6 @@ public class Volume {
         return uuid;
     }
 
-    public static ArrayList<PhysicalVolume> getPVs()
-    {
-        return PVs;
-    }
-
-    public static ArrayList<LogicalVolumes> getLVs()
-    {
-        return LVs;
-    }
-
     public PhysicalHardDrive getPhysicalHardDrive(String physicalHardDriveName)
     {
         for (PhysicalHardDrive phd : PHDs)
