@@ -116,6 +116,7 @@ public class Volume {
     {
         VolumeGroups vg = new VolumeGroups(name);
         addVolumeGroup(vg);
+        getVolumeGroup(name).addPVtoVG(getPhysicalVolume(physicalVolumeName));
         getPhysicalVolume(physicalVolumeName).setVolumeGroup(vg);
         System.out.println("Volume group " + name + " created");
     }
